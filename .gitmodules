@@ -1,0 +1,9 @@
+[submodule "lib/libresp"]
+	path = lib/libresp
+	url = https://github.com/makerworkshop/libresp.git
+[submodule "lib/bee"]
+	path = lib/bee
+	url = https://github.com/makerworkshop/bee.git
+[submodule "lib/Adafruit_CC3000_Library"]
+	path = lib/Adafruit_CC3000_Library
+	url = https://github.com/adafruit/Adafruit_CC3000_Library.git
