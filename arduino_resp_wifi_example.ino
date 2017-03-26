@@ -35,10 +35,10 @@ public Bee {
 public:
   Adafruit_CC3000_Server *server;
   bool Open();
-  bool Read(char *);
+  bool Read(unsigned char *);
   bool Write(unsigned char *, int);
   bool Close();
-  // respObject *OnMessage(respObject *); // OnMessage is commented since it's
+  respObject *OnMessage(respObject *); // OnMessage is commented since it's
                                           // an optional method.
   bool displayConnectionDetails();
 };
@@ -92,7 +92,7 @@ bool WiFiConn::Open()
 
 // Read reads a byte from the connected client (if any) and sets the value to
 // <*b>.
-bool WiFiConn::Read(char *b)
+bool WiFiConn::Read(unsigned char *b)
 {
   Adafruit_CC3000_ClientRef client = this->server->available();
   if (client) {
@@ -134,10 +134,10 @@ bool WiFiConn::displayConnectionDetails()
   return false;
 }
 
-/*
+
 // OnMessage implements some demo messages that are interpreted if
 // super::OnMessage does not know how to handle them.
-respObject *SerialConn::OnMessage(respObject *in)
+respObject *WiFiConn::OnMessage(respObject *in)
 {
   respObject *out = NULL;
 
@@ -151,13 +151,13 @@ respObject *SerialConn::OnMessage(respObject *in)
     // FOO
     // +BAR
     if (RESP_TOKEN_EQUALS(in, 0, "FOO")) {
-      out = createRespString(RESP_OBJECT_STATUS, "BAR");
+      out = createRespString(RESP_OBJECT_STATUS, (unsigned char *)"BAR");
     }
 
     // SUM command sums two integers and returns the resulting number.
     // SUM 5 4
     // :9
-    if (RESP_TOKEN_EQUALS(in, 0, "SUM")) {
+    if (RESP_TOKEN_EQUALS(in, 0, (unsigned char *)"SUM")) {
       int a = RESP_TOKEN_TO_INT(in, 1);
       int b = RESP_TOKEN_TO_INT(in, 2);
       out = createRespInteger(a + b);
@@ -167,7 +167,6 @@ respObject *SerialConn::OnMessage(respObject *in)
 
   return out;
 }
-*/
 
 // Global pointer to WiFiConn instance.
 WiFiConn *conn;
