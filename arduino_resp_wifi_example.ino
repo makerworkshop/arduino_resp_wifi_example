@@ -13,12 +13,21 @@
 #define ADAFRUIT_CC3000_VBAT  5
 #define ADAFRUIT_CC3000_CS    10
 
-// AP settings.
+// SSID Name
+#ifndef WLAN_SSID
 #define WLAN_SSID       "SSID NAME (32 CHARS MAX)"
-#define WLAN_PASS       "SSID PASSWORD"
+#endif
 
+// SSID Password
+#ifndef WLAN_PASS
+#define WLAN_PASS       "SSID PASSWORD"
+#endif
+
+// SSID Security protocol
+#ifndef WLAN_SECURITY
 // AP security can be WLAN_SEC_UNSEC, WLAN_SEC_WEP, WLAN_SEC_WPA or WLAN_SEC_WPA2
 #define WLAN_SECURITY   WLAN_SEC_WPA2
+#endif
 
 // Port 6379 is used for redis servers, let's use 16379 for bee servers.
 #define LISTEN_PORT           16379
